@@ -1,115 +1,95 @@
-# AnonymousReportPlatform
+# Confidential Voting System - Corporate Governance/Compliance Solution
 
-A privacy-first decentralized anonymous reporting platform built on Ethereum, allowing employees or stakeholders to submit encrypted reports with full anonymity. Reports include a title, description, and category. The system aggregates category statistics while ensuring that individual report details remain confidential. All users can view the report list and details, but reporter identities are never exposed.
-
-## Live Demo
-
-Try the live application: [https://anonymous-report-platform.vercel.app/](https://anonymous-report-platform.vercel.app/)
+A privacy-preserving decentralized corporate governance solution leveraging **Zama’s Fully Homomorphic Encryption (FHE)** and **Web3 technologies**.  
+This system enables sensitive data to remain encrypted throughout its lifecycle while still being processed, striking a balance between **confidentiality** and **usability**.  
+It is designed for enterprise governance and compliance use cases, ensuring both **privacy protection** and **auditability**.
 
 ## Project Background
 
-Traditional corporate reporting systems often face problems of privacy, trust, and retaliation:
+Corporate governance and compliance require handling highly sensitive data such as employee votes, compliance reports, and internal audits. Traditional systems often fail to guarantee privacy, transparency, and fairness:
 
-• Fear of retaliation: Employees may avoid reporting issues due to identity exposure risks  
+• **Privacy Risk**: Administrators may have access to raw data, risking leaks or misuse  
+• **Lack of Trust**: Employees fear exposure, retaliation, or manipulation of results  
+• **Opaque Processes**: No verifiable way to prove results were counted correctly  
+• **Limited Insights**: Secure aggregation and alerts are missing in traditional systems  
 
-• Centralized control: Administrators may manipulate or suppress reports  
+**Confidential Voting System** addresses these challenges by:  
 
-• Lack of transparency: Employees cannot verify if their reports are counted or handled properly  
-
-• Limited statistics: Organizations lack trustworthy aggregated insights  
-
-AnonymousReportPlatform solves these challenges with a blockchain-based system where:  
-
-• All reports are submitted via smart contracts and stored immutably on-chain  
-
-• Reports are encrypted before submission — even administrators cannot access the raw content  
-
-• Category statistics are aggregated without revealing individual data  
-
-• The process is transparent, immutable, and trustless  
+• Using FHE to keep all submitted votes encrypted end-to-end  
+• Supporting encrypted aggregation for **category statistics** and **threshold-based alerts**  
+• Restricting administrators to view **only aggregated results**, never raw votes  
+• Providing **zero-knowledge proofs (ZKP)** for verifiable audit logs  
+• Enabling compliance-driven **privacy guarantees** tailored for corporate governance  
 
 ## Features
 
 ### Core Functionality
 
-• Report Submission: Users submit encrypted reports with title, content, and category  
+• **Encrypted Vote Submission**: Employees cast votes encrypted with FHE  
+• **Secure Aggregation**: Votes aggregated without exposing individual ballots  
+• **Threshold Alerts**: Configurable alerts triggered when encrypted counts exceed predefined limits  
+• **Admin Dashboard**: Management only sees aggregated, encrypted results  
+• **Real-time Compliance Dashboard**: Encrypted insights into governance-related metrics  
 
-• Category Statistics: Aggregated counts of reports per category, available to all users  
+### Privacy & Security
 
-• Report Listing: All users can view existing reports and details (encrypted when necessary)  
-
-• Anonymous Access: No identity information is stored or linked to reports  
-
-• Real-time Dashboard: View latest reports, categories, and statistics instantly  
-
-### Privacy & Anonymity
-
-• Client-side Encryption: Reports are encrypted before leaving the user’s device  
-
-• Fully Anonymous: No wallet, account, or identity required to submit reports  
-
-• Immutable Records: Reports cannot be altered or deleted once submitted  
-
-• Encrypted Processing: Report data remains protected during aggregation  
+• **End-to-End Encryption**: Votes remain encrypted throughout submission, processing, and storage  
+• **Zero-Knowledge Proofs (ZKPs)**: Cryptographic proofs ensure correctness of tallying and aggregation  
+• **Immutable Audit Logs**: Blockchain-backed audit records cannot be tampered with  
+• **Minimal Trust Assumptions**: Neither administrators nor system operators see plaintext data  
 
 ## Architecture
 
 ### Smart Contracts
 
-AnonymousReportPlatform.sol (deployed on Ethereum)  
+**ConfidentialVotingSystem.sol** (Ethereum-compatible chain)  
 
-• Manages report submissions (title, content, category)  
+• Manages encrypted vote submissions  
+• Stores immutable encrypted records  
+• Provides aggregation and threshold alerts in encrypted state  
+• Supports ZK-proof verification for audit purposes  
 
-• Maintains immutable report storage on-chain  
+### Backend Services
 
-• Aggregates category statistics automatically  
-
-• Provides transparent, public access to report data and counts  
+• **Zama FHE Engine**: Performs homomorphic operations on encrypted data  
+• **ZK Audit Module**: Generates proofs for compliance and auditability  
+• **Alerting Service**: Triggers notifications on encrypted threshold conditions  
 
 ### Frontend Application
 
-• React + TypeScript: Interactive and responsive UI  
-
-• Ethers.js: Blockchain interaction and contract calls  
-
-• Modern UI/UX: Dashboard with category tabs, search, and statistics  
-
-• Wallet Integration: Ethereum wallet support (optional, for certain deployments)  
-
-• Real-time Updates: Fetches reports and statistics directly from blockchain  
+• **React + TypeScript**: Interactive web interface  
+• **Ethers.js**: Smart contract interaction layer  
+• **TailwindCSS**: Responsive UI design  
+• **Compliance Dashboard**: View aggregated encrypted insights  
 
 ## Technology Stack
 
-### Blockchain
+### Blockchain Layer
 
-• Solidity ^0.8.24: Smart contract development  
+• **Solidity ^0.8.24**: Smart contract development  
+• **OpenZeppelin**: Security libraries and contract templates  
+• **Hardhat**: Development, testing, and deployment framework  
+• **Ethereum Sepolia Testnet**: Current testing environment  
 
-• OpenZeppelin: Secure libraries for contract patterns  
+### Cryptography Layer
 
-• Hardhat: Development, testing, and deployment framework  
+• **Zama FHE SDK**: Homomorphic encryption for encrypted computation  
+• **zk-SNARKs / zk-STARKs**: Zero-knowledge proof frameworks  
+• **Threshold Cryptography**: For secure distributed key management  
 
-• Ethereum Sepolia Testnet: Current deployment network  
+### Frontend Layer
 
-### Frontend
-
-• React 18 + TypeScript: Modern frontend framework  
-
-• Ethers.js: Ethereum blockchain interaction  
-
-• React Icons: UI iconography  
-
-• Tailwind + CSS: Styling and responsive layout  
-
-• Vercel: Frontend deployment platform  
+• **React 18 + TypeScript**: UI framework  
+• **Ethers.js**: Blockchain interaction  
+• **Tailwind + CSS**: Styling  
+• **Vercel**: Deployment platform  
 
 ## Installation
 
 ### Prerequisites
 
 • Node.js 18+  
-
-• npm / yarn / pnpm package manager  
-
+• npm / yarn / pnpm  
 • Ethereum wallet (MetaMask, WalletConnect, etc.)  
 
 ### Setup
@@ -124,46 +104,37 @@ npx hardhat compile
 # Deploy to network (configure hardhat.config.js first)
 npx hardhat run deploy/deploy.ts --network sepolia
 
-# Start the development server
+# Start the frontend
 cd frontend
 
 # Install dependencies
 npm install
 
-# Run
+# Run dev server
 npm run dev
 ```
 
 ## Usage
 
-• Connect Wallet: (optional) for authenticated deployments  
-
-• Browse Reports: All users can view submitted reports and details  
-
-• View Statistics: Check category distribution and report counts  
-
-• Search & Filter: Easily find reports by keyword or category  
+• **Submit Encrypted Vote**: Cast a vote without revealing plaintext  
+• **View Aggregated Results**: Management dashboard displays encrypted statistics  
+• **Threshold Alerts**: Receive secure alerts when governance KPIs cross limits  
+• **Verify Audit Logs**: Use ZK proofs to confirm system correctness  
 
 ## Security Features
 
-• Encrypted Submission: Reports encrypted before submission  
-
-• Immutable Storage: Reports cannot be tampered with once stored  
-
-• Anonymity by Design: No personal data or identity linked to reports  
-
-• Transparent Aggregation: Statistics verifiable directly on-chain  
+• **Homomorphic Encryption**: Votes processed without decryption  
+• **ZK-Proof Audits**: Mathematical guarantees of integrity  
+• **Immutable Storage**: On-chain records cannot be altered  
+• **Minimal Disclosure**: Only aggregated insights exposed, never raw votes  
 
 ## Future Enhancements
 
-• Full Homomorphic Encryption (FHE) integration for secure encrypted computation  
+• **Multi-chain Deployment**: Expand to additional blockchain ecosystems  
+• **Advanced Compliance Templates**: Industry-specific compliance rulesets  
+• **Mobile-Friendly UI**: Optimized mobile access for employees and auditors  
+• **DAO Integration**: Governance-driven evolution of the compliance system  
 
-• Threshold-based alerts when certain category counts exceed limits  
+---
 
-• Multi-chain deployment for broader accessibility  
-
-• Mobile-friendly optimized interface  
-
-• DAO governance for community-driven improvements  
-
-Built with ❤️ for a safer and more transparent reporting environment on Ethereum  
+Built with ❤️ to enable **trustworthy corporate governance and compliance** through **privacy-preserving cryptography** and **Web3 technology**.  
